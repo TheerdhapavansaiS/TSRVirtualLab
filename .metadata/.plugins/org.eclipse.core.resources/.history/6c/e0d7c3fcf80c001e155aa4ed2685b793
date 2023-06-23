@@ -1,0 +1,104 @@
+package com.hex.backend.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hex.backend.Entity.Admin;
+import com.hex.backend.Repository.AdminRepository;
+
+@Service
+public class AdminService {
+	
+	@Autowired
+	private AdminRepository adminRepo;
+	
+	public List<Admin> findAll() 
+	{
+		List<Admin> a = adminRepo.findAll();
+		return a;
+	}
+	
+	public Admin findByAdminId(String id) 
+	{
+		Admin a = adminRepo.findById(id).get();
+		return a;
+	}
+	
+	public Object findByAdminName(String name) 
+	{
+		Admin a = adminRepo.findByAdminName(name);
+		if(a!=null) {
+			return a;
+		}else {
+			return "Admin not found!!";
+		}
+		
+	}
+
+	public Admin findByAdminPhone(long phone) 
+	{
+		Admin a = adminRepo.findByAdminPhone(phone);
+		return a;
+	}
+
+	 public String updatePassword(String pass,String id) 
+     {
+            String msg = "Unable to update password";
+            int res = adminRepo.updatePassword(pass, id);
+            if (res > 0) 
+            {
+                msg = "Password updated";
+            }
+            return msg;
+     }
+	 
+	 public String updatePhone(long phone,String id) 
+     {
+            String msg = "Unable to update phone number";
+            int res = adminRepo.updatePhone(phone, id);            
+            if (res > 0) 
+            {
+                msg = "Phone number updated";
+            }
+            return msg;
+     }
+	 
+	 public String updateMail(String mail,String id) 
+     {
+            String msg = "Unable to update admin mail";
+            int res = adminRepo.updateMail(mail, id);
+            
+            if (res > 0) 
+            {
+                msg = "Admin mail updated";
+            }
+            return msg;
+     }
+	 
+	 public Admin addAdmin(Admin admin)
+	    {
+	        Admin a = adminRepo.findTopByOrderByAdminIdDesc();
+	        String id= "ADM100";
+	        if(a!=null)
+	        {
+	            id=a.getAdminId()+1;
+	        }
+	        admin.setAdminId(id);
+	        a=adminRepo.save(admin);
+	    
+	        return a;
+	    }
+	 
+	 public String deleteByAdminId(String id)
+	    {
+	        String str ="Unable to delete the admin";
+	        int r=adminRepo.deleteAdmin(id);
+	        if(r>0)
+	        {
+	            str="Admin with id: "+id+" deleted";
+	        }
+	        return str;
+	    }
+}

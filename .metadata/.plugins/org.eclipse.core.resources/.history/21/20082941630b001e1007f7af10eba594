@@ -1,0 +1,16 @@
+package com.hex.backend.Entity;
+
+import javax.persistence.Entity;
+
+@Entity
+@Table(name="article")
+public class Article {
+
+	private String userId;
+	private String userName;
+	private String userAddress;
+	private String userMail;
+	private Long userPhone;
+	private String userPassword;
+
+}

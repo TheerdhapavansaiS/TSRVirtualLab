@@ -1,0 +1,99 @@
+
+package com.hex.backend.Entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.hex.backend.Generators.StringPrefixedSeqIdGenerator;
+
+
+@Entity
+@Table(name="admin")
+public class Admin {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "book_seq")
+	@GenericGenerator(name = "book_seq",
+		strategy="com.hex.backend.Generators.StringPrefixedSeqIdGenerator",
+		parameters = {
+				@Parameter(name = StringPrefixedSeqIdGenerator.INCREMENT_PARAM, value = "50"),
+				@Parameter(name = StringPrefixedSeqIdGenerator.VALUE_PREFIX_PARAMETER, value = "ADM"),
+				@Parameter(name = StringPrefixedSeqIdGenerator.NUMBER_FORMAT_PARAMETER, value = "1%03d")
+		})
+	@Column(name="adminid")
+	private String adminId;
+	@Column(name="adminname")
+	private String adminName;
+	@Column(name="adminmail")
+	private String adminMail;
+	@Column(name="adminphone")
+	private Long adminPhone;
+	@Column(name="adminpassword")
+	private String adminPassword;
+	
+	public Admin() {}
+
+	public String getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(String adminId) {
+		this.adminId = adminId;
+	}
+
+	public String getAdminName() {
+		return adminName;
+	}
+
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
+	}
+
+	public String getAdminMail() {
+		return adminMail;
+	}
+
+	public void setAdminMail(String adminMail) {
+		this.adminMail = adminMail;
+	}
+
+	public Long getAdminPhone() {
+		return adminPhone;
+	}
+
+	public void setAdminPhone(Long adminPhone) {
+		this.adminPhone = adminPhone;
+	}
+
+	public String getAdminPassword() {
+		return adminPassword;
+	}
+
+	public void setAdminPassword(String adminPassword) {
+		this.adminPassword = adminPassword;
+	}
+
+	public Admin(String adminId, String adminName, String adminMail, Long adminPhone, String adminPassword) {
+		super();
+		this.adminId = adminId;
+		this.adminName = adminName;
+		this.adminMail = adminMail;
+		this.adminPhone = adminPhone;
+		this.adminPassword = adminPassword;
+	}
+
+	@Override
+	public String toString() {
+		return "Admin [adminId=" + adminId + ", adminName=" + adminName + ", adminMail=" + adminMail + ", adminPhone="
+				+ adminPhone + ", adminPassword=" + adminPassword + "]";
+	}
+	
+	
+}

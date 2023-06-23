@@ -1,0 +1,29 @@
+package com.hex.backend.Entity;
+
+import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="article")
+public class Article {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="artid")
+	private String artId;
+	
+	private byte[] artImg;
+	private String artTitle;
+	private String artDesc;
+	private Date artDate;
+	private String artCatName;
+	
+
+
+}

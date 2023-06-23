@@ -1,0 +1,5 @@
+package com.hex.backend.Generators;
+
+public class StringPrefixedSeqIdGenerator {
+
+}

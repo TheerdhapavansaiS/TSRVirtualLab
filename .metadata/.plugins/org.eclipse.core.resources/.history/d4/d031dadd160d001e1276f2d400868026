@@ -1,0 +1,5 @@
+package com.hex.backend.Repository;
+
+public interface UserRepository {
+
+}

@@ -1,0 +1,5 @@
+package com.hex.backend.Entity;
+
+public class User {
+
+}
